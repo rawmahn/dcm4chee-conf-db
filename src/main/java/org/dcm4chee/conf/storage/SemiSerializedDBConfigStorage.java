@@ -37,7 +37,7 @@
  *
  *  ***** END LICENSE BLOCK *****
  */
-package org.dcm4che3.conf.storage;
+package org.dcm4chee.conf.storage;
 
 import org.dcm4che3.conf.api.ConfigurationException;
 import org.dcm4che3.conf.core.Configuration;

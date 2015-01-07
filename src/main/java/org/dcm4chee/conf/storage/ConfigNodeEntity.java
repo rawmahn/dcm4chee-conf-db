@@ -37,7 +37,7 @@
  *
  *  ***** END LICENSE BLOCK *****
  */
-package org.dcm4che3.conf.storage;
+package org.dcm4chee.conf.storage;
 
 import javax.persistence.*;
 
@@ -45,6 +45,7 @@ import javax.persistence.*;
  * @author Roman K
  */
 @Entity
+@Table(name = "dcm4che_config")
 public class ConfigNodeEntity {
 
     @Id

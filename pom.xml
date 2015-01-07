@@ -52,7 +52,47 @@
         <hbm2ddl.auto>update</hbm2ddl.auto>
         <show_sql>false</show_sql>
         <dcm4che.version>3.3.6-SNAPSHOT</dcm4che.version>
+        <project.classifier></project.classifier>
+        <useSequence>false</useSequence>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>asb</id>
+            <properties>
+                <ds>java:jboss/datasources/OracleDS</ds>
+                <project.classifier>-asb</project.classifier>
+                <useSequence>true</useSequence>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources-with-seq</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>sequence-for-pk-generation</id>
+            <activation>
+                <property>
+                    <name>useSequence</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources-with-seq</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+
 
     <dependencies>
         <dependency>
@@ -95,6 +135,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.5</version>
                 <configuration>
+                    <classifier>${project.classifier}</classifier>
                     <archive>
                         <manifestEntries>
                             <Dependencies> org.dcm4che.conf.api, org.dcm4che.conf.core, org.codehaus.jackson.jackson-mapper-asl</Dependencies>
@@ -104,4 +145,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
