@@ -124,7 +124,7 @@ public class SemiSerializedDBConfigStorage implements Configuration {
 
     @Override
     public void refreshNode(String path) throws ConfigurationException {
-        throw new RuntimeException("Not implemented");
+        //noop
     }
 
     @Override

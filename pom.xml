@@ -55,13 +55,17 @@
         <project.classifier></project.classifier>
         <useSequence>false</useSequence>
     </properties>
-
+  <scm>
+    <connection>scm:git:ssh://git@ssh.github.com/dcm4che/dcm4chee-conf-db.git</connection>
+    <developerConnection>scm:git:ssh://git@ssh.github.com/dcm4che/dcm4chee-conf-db.git</developerConnection>
+    <url>http://github.com/dcm4che/dcm4chee-conf-db</url>
+  </scm>
     <profiles>
         <profile>
             <id>asb</id>
             <properties>
                 <ds>java:jboss/datasources/OracleDS</ds>
-                <project.classifier>-asb</project.classifier>
+                <project.classifier>asb</project.classifier>
                 <useSequence>true</useSequence>
             </properties>
             <build>
@@ -116,6 +120,13 @@
         </dependency>
     </dependencies>
     <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>2.2</version>
+      </extension>
+    </extensions>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
