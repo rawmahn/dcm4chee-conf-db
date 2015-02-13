@@ -93,10 +93,7 @@ public class SemiSerializedDBConfigStorage implements Configuration {
     @Override
     public boolean nodeExists(String path) throws ConfigurationException {
         if (path.equals(DicomPath.ConfigRoot.path()))
-            if (db.isEmpty())
-                return false;
-            else
-                return true;
+            return !db.isEmpty();
 
         SplittedPath splittedPath = new SplittedPath(path).invoke();
 
