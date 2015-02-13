@@ -43,11 +43,8 @@ import org.dcm4che3.conf.api.ConfigurationException;
 import org.dcm4che3.conf.core.Configuration;
 import org.dcm4che3.conf.core.util.ConfigNodeUtil;
 import org.dcm4che3.conf.dicom.DicomPath;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
 import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,8 +58,6 @@ import static org.dcm4che3.conf.core.util.SimpleConfigNodeUtil.getPathItems;
  */
 @ApplicationScoped
 public class SemiSerializedDBConfigStorage implements Configuration {
-
-    private static final Logger log = LoggerFactory.getLogger(SemiSerializedDBConfigStorage.class);
 
     /**
      * The level from which on all the nodes are serialized
@@ -123,13 +118,8 @@ public class SemiSerializedDBConfigStorage implements Configuration {
         // no need to store those
         if (i <= level) return;
 
-        try {
-            db.modifyNode(pathItemsForDB, restPathItems, configNode);
-        } catch (EJBException e) {
-            log.warn("Failed to modify node {}. Due to a possible race condition, attempting to re-run the update.", path);
-            db.modifyNode(pathItemsForDB, restPathItems, configNode);
-            log.info("Succeeded with a re-run of the update.");
-        }
+        db.modifyNode(pathItemsForDB, restPathItems, configNode);
+
     }
 
     @Override
