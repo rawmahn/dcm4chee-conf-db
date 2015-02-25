@@ -43,6 +43,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.dcm4che3.conf.core.util.SimpleConfigNodeUtil;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -103,6 +105,7 @@ public class DBStorageBean {
         }
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void modifyNode(List<String> pathItemsForDB, List<String> restPathItems, Map<String, Object> configNode) {
 
         String dbPath = SimpleConfigNodeUtil.toSimpleEscapedPath(pathItemsForDB);
