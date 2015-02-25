@@ -43,7 +43,7 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dcm4chee</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0.beta.v20150225_2005</version>
     <artifactId>dcm4chee-conf-db</artifactId>
     <name>dcm4chee-conf-db</name>
     <packaging>jar</packaging>
@@ -55,11 +55,11 @@
         <project.classifier></project.classifier>
         <useSequence>false</useSequence>
     </properties>
-  <scm>
-    <connection>scm:git:ssh://git@ssh.github.com/dcm4che/dcm4chee-conf-db.git</connection>
-    <developerConnection>scm:git:ssh://git@ssh.github.com/dcm4che/dcm4chee-conf-db.git</developerConnection>
-    <url>http://github.com/dcm4che/dcm4chee-conf-db</url>
-  </scm>
+    <scm>
+        <connection>scm:git:ssh://git@ssh.github.com/dcm4che/dcm4chee-conf-db.git</connection>
+        <developerConnection>scm:git:ssh://git@ssh.github.com/dcm4che/dcm4chee-conf-db.git</developerConnection>
+        <url>http://github.com/dcm4che/dcm4chee-conf-db</url>
+    </scm>
     <profiles>
         <profile>
             <id>asb</id>
@@ -76,6 +76,11 @@
                     </resource>
                 </resources>
             </build>
+            <distributionManagement>
+                <repository>
+                    <id>hap-repository</id>
+                </repository>
+            </distributionManagement>
         </profile>
         <profile>
             <id>sequence-for-pk-generation</id>
@@ -95,7 +100,6 @@
             </build>
         </profile>
     </profiles>
-
 
 
     <dependencies>
@@ -122,13 +126,13 @@
 
     </dependencies>
     <build>
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-ssh</artifactId>
-        <version>2.2</version>
-      </extension>
-    </extensions>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.2</version>
+            </extension>
+        </extensions>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -153,14 +157,14 @@
                     <doUpdate>false</doUpdate>
                 </configuration>
             </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.5.1</version>
-          <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
-          </configuration>
-        </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.5</version>
@@ -168,7 +172,9 @@
                     <classifier>${project.classifier}</classifier>
                     <archive>
                         <manifestEntries>
-                            <Dependencies> org.dcm4che.conf.api, org.dcm4che.conf.core, org.codehaus.jackson.jackson-mapper-asl</Dependencies>
+                            <Dependencies>org.dcm4che.conf.api, org.dcm4che.conf.core,
+                                org.codehaus.jackson.jackson-mapper-asl
+                            </Dependencies>
                             <Implementation-Build>${buildNumber}</Implementation-Build>
                             <Build-Profile>${project.classifier}</Build-Profile>
                         </manifestEntries>
@@ -177,5 +183,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
