@@ -136,6 +136,23 @@
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                </configuration>
+            </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>2.5.1</version>
@@ -152,6 +169,8 @@
                     <archive>
                         <manifestEntries>
                             <Dependencies> org.dcm4che.conf.api, org.dcm4che.conf.core, org.codehaus.jackson.jackson-mapper-asl</Dependencies>
+                            <Implementation-Build>${buildNumber}</Implementation-Build>
+                            <Build-Profile>${project.classifier}</Build-Profile>
                         </manifestEntries>
                     </archive>
                 </configuration>
